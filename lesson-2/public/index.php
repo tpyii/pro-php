@@ -1,18 +1,15 @@
 <?php
 
-use app\models\Basket;
 use app\models\Book;
+use app\models\Basket;
 
+include '../config/config.php';
 include '../core/Autoload.php';
 
 spl_autoload_register([new Autoload, 'loadClass']);
 
 $basket = new Basket;
 $book = new Book('Дюна', 699, 'Герберт Фрэнк');
-
-echo $book->where('name', 'Alex')
-       ->andWhere('session', 123)
-       ->andWhere('id', 5)
-       ->get();
+$book->getOne(1);
 
 $basket->addItem($book);
