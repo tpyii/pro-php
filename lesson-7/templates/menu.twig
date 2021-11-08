@@ -1,0 +1,8 @@
+<a href="/">Главная</a>
+<a href="/products">Товары</a>
+<a href="/basket">Корзина</a>
+{% if login %}
+<a href="/logout">Выйти</a>
+{% else %}
+<a href="/login">Войти</a>
+{% endif %}
