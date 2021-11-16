@@ -1,0 +1,30 @@
+<div>{{ flash.message }}</div>
+<h1>Заказы</h1>
+{% if orders|length > 0 %}
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>E-mail</th>
+      <th>Статус</th>
+      <th>Товаров</th>
+      <th>Сумма</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in orders %}
+    <tr>
+      <td>{{ item.id }}</td>
+      <td>{{ item.email }}</td>
+      <td>{{ item.status }}</td>
+      <td>{{ item.count }}</td>
+      <td>{{ item.sum }}</td>
+      <td><a href="/orders/{{ item.id }}">Edit</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+Заказов нет
+{% endif %}

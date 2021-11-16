@@ -1,0 +1,25 @@
+<div>{{ flash.message }}</div>
+<h1>Корзина</h1>
+{% if items|length > 0 %}
+<ul>
+  {% for item in items %}
+  <li>
+    <h2><a href="/products/{{ item.product_id }}">{{ item.name }}</a></h2>
+    <p>Цена: {{ item.price }}</p>
+    <form action="/basket/{{ item.id }}" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Удалить">
+    </form>
+  </li>
+  {% endfor %}
+</ul>
+<br>
+<h3>Оформить заказ</h3>
+<form action="/orders" method="POST">
+  <p><label for="email">E-mail</label></p>
+  <p><input id="email" type="email" name="email" required></p>
+  <p><input type="submit" value="Заказать"></p>
+</form>
+{% else %}
+Корзина пустая
+{% endif %}

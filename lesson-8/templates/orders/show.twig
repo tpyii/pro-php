@@ -1,0 +1,25 @@
+<div>{{ flash.message }}</div>
+<h1>Заказ #{{ order.id }}</h1>
+<form action="/orders/{{ order.id }}" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+  <p><label for="status">Статус</label></p>
+  <p><select id="status" name="status">
+    <option value="moderation" {{ order.status == 'moderation' ? 'selected' }}>moderation</option>
+    <option value="canceled" {{ order.status == 'canceled' ? 'selected' }}>canceled</option>
+    <option value="completed" {{ order.status == 'completed' ? 'selected' }}>completed</option>
+  </select></p>
+  <p><input type="submit" value="Сохранить"></p>
+</form>
+<br>
+{% if products|length > 0 %}
+<ul>
+  {% for item in products %}
+  <li>
+    <h2><a href="/products/{{ item.product_id }}">{{ item.name }}</a></h2>
+    <p>Цена: {{ item.price }}</p>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+Товаров нет
+{% endif %}
